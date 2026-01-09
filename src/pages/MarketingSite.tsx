@@ -259,7 +259,7 @@ export function MarketingSite() {
             </section>
 
             {/* STATS / SOCIAL PROOF */}
-            <section className="py-20 bg-[#2d4a3e] text-white">
+            <section className="py-20 text-white" style={{ backgroundColor: '#2d4a3e' }}>
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
                     <div>
                         <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">1,000+</div>
@@ -277,14 +277,14 @@ export function MarketingSite() {
             </section>
 
             {/* PRICING */}
-            <section id="pricing" className="py-32 relative overflow-hidden bg-ink text-white">
+            <section id="pricing" className="py-32 relative overflow-hidden text-white" style={{ backgroundColor: '#2c332e' }}>
                 <div className="absolute bottom-0 w-full h-[80%] opacity-10 -z-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
 
                 <div className="max-w-4xl mx-auto text-center relative z-10 px-6">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif">
                         <Trans i18nKey="marketing.pricing_title" components={{ 1: <br /> }} />
                     </h2>
-                    <p className="text-forest-100 text-xl mb-16 max-w-lg mx-auto">{t('marketing.pricing_subtitle')}</p>
+                    <p className="text-[#d1fae5] text-xl mb-16 max-w-lg mx-auto">{t('marketing.pricing_subtitle')}</p>
 
                     <div className="grid md:grid-cols-2 gap-8 items-center">
 
@@ -357,7 +357,7 @@ export function MarketingSite() {
             </section>
 
             {/* FOOTER */}
-            <footer className="bg-[#2c332e] text-white/40 py-12 border-t border-white/10">
+            <footer className="text-white/40 py-12 border-t border-white/10" style={{ backgroundColor: '#2c332e' }}>
                 <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
                     <span className="font-serif text-3xl font-bold tracking-tight text-white">FamilyLifeOS</span>
                     <div className="text-sm font-medium">
