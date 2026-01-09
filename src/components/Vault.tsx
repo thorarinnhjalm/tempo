@@ -1,6 +1,7 @@
 import { Member, Memory } from '../types/firestore';
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface VaultProps {
     currentUser: Member;
@@ -9,6 +10,7 @@ interface VaultProps {
 }
 
 export function Vault({ currentUser, memories, members }: VaultProps) {
+    const { t, i18n } = useTranslation();
     const myMemories = memories.filter(m => m.taggedMemberIds.includes(currentUser.id));
 
     const getMemberData = (id: string) => members.find(m => m.id === id);
@@ -16,8 +18,8 @@ export function Vault({ currentUser, memories, members }: VaultProps) {
     return (
         <div className="space-y-6 pb-24">
             <header className="px-4 pt-4">
-                <h2 className="text-3xl font-black text-slate-800">My Vault</h2>
-                <p className="text-slate-500 font-bold">Collecting memories...</p>
+                <h2 className="text-3xl font-black text-slate-800">{t('vault.title')}</h2>
+                <p className="text-slate-500 font-bold">{t('vault.subtitle')}</p>
             </header>
 
             {/* TIMELINE */}
@@ -28,8 +30,8 @@ export function Vault({ currentUser, memories, members }: VaultProps) {
                 {myMemories.length === 0 ? (
                     <div className="bg-white p-8 rounded-3xl border-2 border-dashed border-slate-200 text-center">
                         <span className="text-4xl mb-4 block">📭</span>
-                        <h3 className="font-bold text-slate-700">No memories yet!</h3>
-                        <p className="text-slate-400 text-sm mt-2">Complete a quest to start your collection.</p>
+                        <h3 className="font-bold text-slate-700">{t('vault.empty_title')}</h3>
+                        <p className="text-slate-400 text-sm mt-2">{t('vault.empty_desc')}</p>
                     </div>
                 ) : (
                     myMemories.map((memory, index) => (
@@ -47,7 +49,7 @@ export function Vault({ currentUser, memories, members }: VaultProps) {
                                 {/* Date Header */}
                                 <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">
                                     <Calendar size={12} />
-                                    {new Date(memory.createdAt).toLocaleDateString()}
+                                    {new Date(memory.createdAt).toLocaleDateString(i18n.language)}
                                 </div>
 
                                 {/* Content */}
@@ -83,7 +85,7 @@ export function Vault({ currentUser, memories, members }: VaultProps) {
                                     </div>
                                     {memory.taggedMemberIds.length > 1 && (
                                         <span className="text-xs font-bold text-slate-400">
-                                            was with you
+                                            {t('vault.was_with_you')}
                                         </span>
                                     )}
 

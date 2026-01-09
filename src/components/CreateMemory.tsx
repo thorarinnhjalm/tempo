@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mic, Camera, X, Check, Sparkles } from 'lucide-react';
 import { clsx } from 'clsx';
 import confetti from 'canvas-confetti';
+import { useTranslation } from 'react-i18next';
 
 interface CreateMemoryProps {
     members: Member[];
@@ -13,6 +14,7 @@ interface CreateMemoryProps {
 }
 
 export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMemoryProps) {
+    const { t } = useTranslation();
     const [content, setContent] = useState('');
     const [selectedMemberIds, setSelectedMemberIds] = useState<string[]>([currentUser.id]); // Auto-select self
     const [isRecording, setIsRecording] = useState(false);
@@ -114,7 +116,7 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
                 <button onClick={onClose} className="p-2 bg-slate-100 rounded-full hover:bg-slate-200">
                     <X size={24} className="text-slate-600" />
                 </button>
-                <h2 className="text-xl font-black text-slate-800 tracking-tight">New Memory</h2>
+                <h2 className="text-xl font-black text-slate-800 tracking-tight">{t('create_memory.title')}</h2>
                 <div className="w-10" /> {/* Spacer */}
             </div>
 
@@ -122,11 +124,11 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
 
                 {/* 1. CONTENT & VOICE INPUT */}
                 <div className="space-y-3">
-                    <label className="text-lg font-bold text-slate-700 ml-1">What happened?</label>
+                    <label className="text-lg font-bold text-slate-700 ml-1">{t('create_memory.prompt_what')}</label>
                     <div className="relative">
                         <textarea
                             className="w-full bg-indigo-50 rounded-3xl p-6 text-lg min-h-[140px] focus:ring-4 focus:ring-indigo-100 outline-none resize-none placeholder-indigo-300 font-medium"
-                            placeholder="We went to..."
+                            placeholder={t('create_memory.placeholder_what')}
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                         />
@@ -140,7 +142,7 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
                             )}
                         >
                             <Mic size={24} />
-                            {isRecording && <span className="text-sm font-bold">Listening...</span>}
+                            {isRecording && <span className="text-sm font-bold">{t('create_memory.listening')}</span>}
                         </motion.button>
                     </div>
                 </div>
@@ -164,7 +166,7 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
                         ) : (
                             <>
                                 <Camera size={32} className="text-slate-400 group-hover:text-indigo-500" />
-                                <span className="font-bold text-slate-400 group-hover:text-indigo-500">Add Photo</span>
+                                <span className="font-bold text-slate-400 group-hover:text-indigo-500">{t('create_memory.add_photo')}</span>
                             </>
                         )}
                     </button>
@@ -173,7 +175,7 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
                 {/* 3. TAGGING (WHO WAS THERE?) */}
                 <div className="space-y-4">
                     <label className="text-lg font-bold text-slate-700 ml-1 flex items-center gap-2">
-                        Who was there?
+                        {t('create_memory.prompt_who')}
                     </label>
                     <div className="flex flex-wrap gap-4">
                         {members.map(member => {
@@ -216,12 +218,12 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
 
                 {/* 4. MOOD SELECTOR */}
                 <div className="space-y-4">
-                    <label className="text-lg font-bold text-slate-700 ml-1">How did it feel?</label>
+                    <label className="text-lg font-bold text-slate-700 ml-1">{t('create_memory.prompt_feel')}</label>
                     <div className="flex gap-3">
                         {[
-                            { id: 'happy', icon: '😄', label: 'Happy' },
-                            { id: 'excited', icon: '🤩', label: 'Excited' },
-                            { id: 'calm', icon: '😌', label: 'Calm' }
+                            { id: 'happy', icon: '😄', label: t('create_memory.happy') },
+                            { id: 'excited', icon: '🤩', label: t('create_memory.excited') },
+                            { id: 'calm', icon: '😌', label: t('create_memory.calm') }
                         ].map((m) => (
                             <button
                                 key={m.id}
@@ -252,7 +254,7 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
                     className="w-full btn-primary bg-indigo-600 text-white py-4 text-xl rounded-2xl font-black shadow-xl shadow-indigo-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:grayscale"
                 >
                     <Sparkles />
-                    Save Memory
+                    {t('create_memory.save_btn')}
                 </motion.button>
             </div>
         </div>

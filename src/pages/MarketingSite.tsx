@@ -1,186 +1,226 @@
-import { ArrowRight, Shield, Sparkles, Check, Play, Star } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowRight, Shield, Sparkles, Check, Play, Star, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import { Button } from '../components/Button';
 import { TiltCard } from '../components/TiltCard';
 import { AmbientBackground } from '../components/AmbientBackground';
+import { useTranslation, Trans } from 'react-i18next';
+import { SeoHead } from '../components/SeoHead';
 
 export function MarketingSite() {
+    const { t } = useTranslation();
+
+    const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
+        const [isOpen, setIsOpen] = useState(false);
+        return (
+            <div className="border-b border-stone-200">
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="flex items-center justify-between w-full py-6 text-left group"
+                >
+                    <span className="text-lg font-serif font-bold text-ink group-hover:text-forest transition-colors">{question}</span>
+                    <ChevronDown className={`transition-transform duration-300 text-stone-400 ${isOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                        >
+                            <p className="pb-6 text-stone-600 leading-relaxed font-medium">
+                                {answer}
+                            </p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        );
+    };
+
     return (
         <div className="min-h-screen font-sans bg-paper selection:bg-clay selection:text-white overflow-x-hidden relative">
+            <SeoHead />
 
-            {/* BACKGROUND BLOBS - Fixing "Too White" */}
-            <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] bg-emerald-100/40 rounded-full blur-[120px] mix-blend-multiply opacity-70" />
-                <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] bg-mustard/10 rounded-full blur-[100px] mix-blend-multiply opacity-60" />
-                <div className="absolute bottom-[-10%] right-[20%] w-[500px] h-[500px] bg-clay/5 rounded-full blur-[100px] mix-blend-multiply opacity-50" />
-            </div>
+            <AmbientBackground themeName="warm" />
 
-            <AmbientBackground themeName="emerald" />
-
-            {/* NAVIGATION */}
-            <nav className="fixed top-0 w-full bg-paper/70 backdrop-blur-lg z-50 border-b border-stone-100/50 supports-[backdrop-filter]:bg-paper/40">
-                <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-
-                    {/* LOGO: Samveran */}
+            {/* NAV */}
+            <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 border-b border-white/50">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-sm">
-                            {/* Abstract 'Hugging' Shapes */}
-                            <motion.circle
-                                initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.1 }}
-                                cx="15" cy="20" r="12" fill="#2d4a3e" className="mix-blend-multiply opacity-90"
-                            />
-                            <motion.circle
-                                initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2 }}
-                                cx="25" cy="20" r="12" fill="#d97757" className="mix-blend-multiply opacity-90"
-                            />
-                        </svg>
-                        <span className="font-serif text-2xl font-bold tracking-tight text-ink">Samveran</span>
+                        <div className="w-10 h-10 bg-gradient-to-br from-forest to-forest-light rounded-xl flex items-center justify-center text-white font-serif font-black text-xl shadow-lg">
+                            F
+                        </div>
+                        <span className="font-serif font-bold text-xl tracking-tight text-ink hidden sm:block">FamilyLifeOS</span>
                     </div>
 
-                    {/* Desktop Links */}
                     <div className="hidden md:flex items-center gap-8 font-medium text-forest-light">
-                        <a href="#features" className="hover:text-forest transition-colors">Tólin</a>
-                        <a href="#tracks" className="hover:text-forest transition-colors">Heimarnir</a>
-                        <a href="#pricing" className="hover:text-forest transition-colors">Verð</a>
+                        <a href="#features" className="hover:text-forest transition-colors">{t('marketing.nav_tools')}</a>
+                        <a href="#methodology" className="hover:text-forest transition-colors">{t('marketing.nav_worlds')}</a>
+                        <a href="#pricing" className="hover:text-forest transition-colors">{t('marketing.nav_pricing')}</a>
                     </div>
 
-                    {/* CTA */}
-                    <Button size="sm">Prófa frítt</Button>
+                    <Button size="sm" onClick={() => window.location.href = '/login'}>{t('marketing.btn_try_free')}</Button>
                 </div>
             </nav>
 
-            {/* HERO SECTION */}
-            <section className="pt-32 pb-20 px-6 relative">
-                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-
-                    <div className="space-y-8 relative z-10">
+            {/* HERO */}
+            <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <div className="relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mustard/10 text-mustard font-bold text-sm tracking-wide uppercase border border-mustard/20"
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mustard/10 text-mustard font-bold text-sm tracking-wide uppercase border border-mustard/20 mb-8"
                         >
-                            <Star size={14} fill="currentColor" /> Leikur að læra
+                            <Star size={14} fill="currentColor" /> {t('marketing.leikur_ad_laera')}
                         </motion.div>
 
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-bold leading-[1.1] text-ink font-serif"
+                            className="text-5xl md:text-7xl font-bold leading-[1.1] text-ink font-serif mb-6"
                         >
-                            Gerum uppeldið að <span className="text-clay italic relative">gæðastundum
-                                <motion.span
-                                    className="absolute bottom-1 left-0 w-full h-3 bg-clay/20 -z-10 rounded-full"
-                                    initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ delay: 0.8, duration: 0.8 }}
-                                />
-                            </span>
+                            <Trans
+                                i18nKey="marketing.hero_title"
+                                components={{
+                                    1: <span className="text-clay italic relative" />,
+                                    2: <motion.span
+                                        className="absolute bottom-1 left-0 w-full h-3 bg-clay/20 -z-10 rounded-full"
+                                        initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ delay: 0.8, duration: 0.8 }}
+                                    />
+                                }}
+                            />
                         </motion.h1>
 
                         <motion.p
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-                            className="text-xl md:text-2xl text-stone-600 font-light leading-relaxed max-w-lg"
+                            className="text-xl md:text-2xl text-stone-600 font-light leading-relaxed max-w-lg mb-10"
                         >
-                            Stjórnstöð fyrir hamingju. Einföld leið til að halda utan um skipulagið og skapa dýrmætar minningar í leiðinni.
+                            {t('marketing.hero_subtitle')}
                         </motion.p>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
                             className="flex flex-col sm:flex-row gap-4"
                         >
-                            <Button variant="secondary" size="lg">
-                                Byrja ferðalagið <ArrowRight size={20} />
+                            <Button variant="secondary" size="lg" onClick={() => window.location.href = '/login'}>
+                                {t('marketing.start_journey')} <ArrowRight size={20} />
                             </Button>
-                            <Button variant="outline" size="lg">
-                                <Play size={20} /> Sjá hvernig þetta virkar
+                            <Button variant="outline" size="lg" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+                                <Play size={20} /> {t('marketing.how_it_works')}
                             </Button>
                         </motion.div>
+
+                        <div className="mt-12 flex items-center gap-4 text-xs font-bold text-stone-400 uppercase tracking-widest">
+                            <div className="flex -space-x-2">
+                                {[1, 2, 3, 4].map(i => (
+                                    <div key={i} className="w-8 h-8 rounded-full bg-stone-200 border-2 border-white" />
+                                ))}
+                            </div>
+                            <span>{t('social_proof.title')}</span>
+                        </div>
                     </div>
 
-                    {/* HERO VISUAL: 3D Tilted App Screenshot */}
-                    <div className="relative">
-                        {/* Blob underlay */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-tr from-mustard/20 to-clay/20 rounded-full blur-[100px] -z-10 opacity-60"></div>
+                    {/* HERO IMAGE / INTERFACE */}
+                    <div className="relative perspective-[2000px]">
+                        <TiltCard className="relative z-10 bg-white rounded-[2.5rem] shadow-2xl border-4 border-white/50 overflow-hidden max-w-md mx-auto lg:ml-auto lg:mr-0 rotate-y-[-12deg] rotate-x-[5deg]">
+                            <div className="bg-forest px-8 py-10 text-white text-center pb-16 relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                                <div className="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 shadow-sm border border-white/10">
+                                    {t('marketing.weekly_quest')}
+                                </div>
+                                <h3 className="font-serif text-3xl font-bold leading-tight drop-shadow-md">{t('marketing.screen_free')}</h3>
+                                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white p-2 rounded-2xl shadow-xl">
+                                    <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center text-3xl">🌿</div>
+                                </div>
+                            </div>
 
-                        <TiltCard className="perspective-1000 rotate-y-12 rotate-x-6 hover:rotate-0 transition-transform duration-700">
-                            <motion.div
-                                initial={{ y: 50, opacity: 0, rotateY: -10 }}
-                                animate={{ y: 0, opacity: 1, rotateY: 0 }}
-                                transition={{ duration: 1, type: "spring" }}
-                                className="relative z-10"
-                            >
-                                {/* Phone Chassis */}
-                                <div className="border-[14px] border-ink rounded-[3.5rem] overflow-hidden shadow-2xl bg-white max-w-sm mx-auto">
-                                    {/* App UI Header */}
-                                    <div className="bg-forest px-8 py-10 text-white text-center pb-16 relative overflow-hidden">
-                                        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                                        <div className="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 shadow-sm border border-white/10">
-                                            Vikulegt Verkefni
-                                        </div>
-                                        <h3 className="font-serif text-3xl font-bold leading-tight drop-shadow-md">Skjálaus Kvöldstund</h3>
-                                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white p-2 rounded-2xl shadow-xl">
-                                            <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center text-3xl">🌿</div>
-                                        </div>
+                            {/* App UI Body */}
+                            <div className="pt-12 p-6 space-y-4 bg-slate-50 min-h-[350px]">
+                                <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-2xl border-2 border-white shadow-sm">🦁</div>
+                                    <div>
+                                        <div className="font-bold text-ink">{t('marketing.mock_john_joined')}</div>
+                                        <div className="text-xs text-slate-500 font-medium">✨ +500 XP</div>
                                     </div>
-
-                                    {/* App UI Body */}
-                                    <div className="pt-12 p-6 space-y-4 bg-slate-50 min-h-[350px]">
-                                        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-2xl border-2 border-white shadow-sm">🦁</div>
-                                            <div>
-                                                <div className="font-bold text-ink">Jón var með!</div>
-                                                <div className="text-xs text-slate-500 font-medium">✨ +500 XP</div>
-                                            </div>
-                                            <div className="ml-auto text-green-500"><Check size={20} /></div>
-                                        </div>
-                                        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4 opacity-60">
-                                            <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-2xl border-2 border-white shadow-sm">🦄</div>
-                                            <div>
-                                                <div className="font-bold text-ink">Anna tók þátt</div>
-                                                <div className="text-xs text-slate-500">Beðið eftir staðfestingu</div>
-                                            </div>
-                                        </div>
-
-                                        <div className="my-6 h-px bg-slate-200 w-full"></div>
-
-                                        <div className="bg-forest/5 p-4 rounded-2xl border border-forest/10">
-                                            <h4 className="font-bold text-forest text-sm mb-2">Tilgangur</h4>
-                                            <p className="text-xs text-forest/70 leading-relaxed">
-                                                Að styrkja tengslin í fjölskyldunni með því að leggja símana til hliðar í eina kvöldstund.
-                                            </p>
-                                        </div>
+                                    <div className="ml-auto text-green-500"><Check size={20} /></div>
+                                </div>
+                                <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4 opacity-60">
+                                    <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-2xl border-2 border-white shadow-sm">🦄</div>
+                                    <div>
+                                        <div className="font-bold text-ink">{t('marketing.mock_anna_joined')}</div>
+                                        <div className="text-xs text-slate-500">{t('marketing.mock_waiting')}</div>
                                     </div>
                                 </div>
-                            </motion.div>
-                        </TiltCard>
-                    </div>
 
+                                <div className="my-6 h-px bg-slate-200 w-full"></div>
+
+                                <div className="bg-forest/5 p-4 rounded-2xl border border-forest/10">
+                                    <h4 className="font-bold text-forest text-sm mb-2">{t('marketing.purpose')}</h4>
+                                    <p className="text-xs text-forest/70 leading-relaxed">
+                                        {t('marketing.purpose_desc')}
+                                    </p>
+                                </div>
+                            </div>
+                        </TiltCard>
+
+                        {/* Decorative Blob */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-forest/20 to-mustard/20 blur-3xl -z-10 rounded-full mix-blend-multiply" />
+                    </div>
+                </div>
+            </header>
+
+            {/* PROBLEM / SOLUTION */}
+            <section className="py-24 bg-white relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <span className="text-clay font-bold tracking-widest uppercase text-sm mb-2 block">The Struggle</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-6">{t('marketing.problem_title')}</h2>
+                            <p className="text-xl text-stone-600 leading-relaxed mb-8">
+                                {t('marketing.problem_desc')}
+                            </p>
+                            <div className="h-1 w-20 bg-stone-200 rounded-full" />
+                        </div>
+                        <div>
+                            <span className="text-forest font-bold tracking-widest uppercase text-sm mb-2 block">The Solution</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-6">{t('marketing.solution_title')}</h2>
+                            <p className="text-xl text-stone-600 leading-relaxed mb-8">
+                                {t('marketing.solution_desc')}
+                            </p>
+                            <Button onClick={() => window.location.href = '/login'} className="bg-forest text-white shadow-forest-light/50 shadow-lg">
+                                {t('marketing.start_journey')}
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* HYBRID VALUE PROP */}
-            <section id="features" className="py-24 relative z-10">
-                {/* Slanted colored background */}
+            {/* FEATURES / TWO SYSTEMS */}
+            <section id="features" className="py-32 relative bg-stone-100">
                 <div className="absolute inset-0 bg-stone-50 skew-y-3 -z-10 origin-top transform scale-[1.1]"></div>
 
                 <div className="max-w-4xl mx-auto px-6 text-center mb-16 relative">
-                    <h2 className="text-4xl md:text-5xl font-bold text-ink mb-6 font-serif">Tvö kerfi, eitt app</h2>
-                    <p className="text-xl text-stone-600 leading-relaxed">Við sameinum praktíska nytjahkuti og skemmtilega leiki svo þið fáið það besta úr báðum heimum.</p>
+                    <h2 className="text-4xl md:text-5xl font-bold text-ink mb-6 font-serif">{t('marketing.two_systems')}</h2>
+                    <p className="text-xl text-stone-600 leading-relaxed">{t('marketing.two_systems_desc')}</p>
                 </div>
 
                 <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
-                    {/* Card 1: Family OS */}
-                    <TiltCard>
-                        <div className="bg-paper p-10 rounded-[2.5rem] border border-stone-100 shadow-xl shadow-stone-200/50 relative overflow-hidden group h-full">
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-forest/5 rounded-full -mr-16 -mt-16 group-hover:scale-125 transition-transform duration-700 ease-in-out"></div>
-
-                            <div className="w-20 h-20 bg-forest text-white rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-forest/20 rotate-3 group-hover:rotate-6 transition-transform">
-                                <Shield size={40} strokeWidth={1.5} />
+                    {/* System 1: Utility */}
+                    <div className="group relative">
+                        <div className="absolute inset-0 bg-forest rounded-[3rem] rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+                        <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
+                            <div className="w-16 h-16 bg-forest/10 rounded-2xl flex items-center justify-center text-forest mb-8">
+                                <Shield size={32} />
                             </div>
 
                             <h3 className="text-3xl font-bold mb-4 font-serif text-ink">Family OS</h3>
                             <p className="text-stone-600 mb-8 leading-relaxed text-lg">
-                                Hjálpartæki fyrir daglega lífið. Hér finnurðu verkfæri til að halda utan um skjáreglur, vikufundi, húsverk og vasapeninga.
+                                {t('marketing.family_os_desc')}
                             </p>
 
-                            <ul className="space-y-4">
-                                {['Vikulegir fundir', 'Skjáreglur', 'Verkefnaskipulag'].map(item => (
+                            <ul className="space-y-4 mt-auto">
+                                {[t('marketing.feat_weekly_meetings'), t('marketing.feat_screen_rules'), t('marketing.feat_task_org')].map(item => (
                                     <li key={item} className="flex items-center gap-3 font-bold text-forest text-lg">
                                         <div className="w-8 h-8 rounded-full bg-forest/10 flex items-center justify-center text-sm">✓</div>
                                         {item}
@@ -188,24 +228,23 @@ export function MarketingSite() {
                                 ))}
                             </ul>
                         </div>
-                    </TiltCard>
+                    </div>
 
-                    {/* Card 2: Memory Builder */}
-                    <TiltCard>
-                        <div className="bg-paper p-10 rounded-[2.5rem] border border-stone-100 shadow-xl shadow-stone-200/50 relative overflow-hidden group h-full">
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-mustard/10 rounded-full -mr-16 -mt-16 group-hover:scale-125 transition-transform duration-700 ease-in-out"></div>
-
-                            <div className="w-20 h-20 bg-mustard text-white rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-mustard/20 -rotate-3 group-hover:-rotate-6 transition-transform">
-                                <Sparkles size={40} strokeWidth={1.5} />
+                    {/* System 2: Play */}
+                    <div className="group relative pt-12 md:pt-0">
+                        <div className="absolute inset-0 bg-mustard rounded-[3rem] -rotate-1 group-hover:-rotate-2 transition-transform duration-500 md:top-0 top-12"></div>
+                        <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
+                            <div className="w-16 h-16 bg-mustard/10 rounded-2xl flex items-center justify-center text-mustard mb-8">
+                                <Sparkles size={32} />
                             </div>
 
                             <h3 className="text-3xl font-bold mb-4 font-serif text-ink">Memory Builder</h3>
                             <p className="text-stone-600 mb-8 leading-relaxed text-lg">
-                                Þegar þið leysið verkefni saman breytist appið í minningabók. Geymdu myndir, hljóðupptökur og sögur sem annars gleymast.
+                                {t('marketing.memory_builder_desc')}
                             </p>
 
-                            <ul className="space-y-4">
-                                {['Sjálfvirk dagbók', 'Hljóðupptökur fyrir börn', 'Tilfinningaskráning'].map(item => (
+                            <ul className="space-y-4 mt-auto">
+                                {[t('marketing.feat_diary'), t('marketing.feat_audio'), t('marketing.feat_emotions')].map(item => (
                                     <li key={item} className="flex items-center gap-3 font-bold text-mustard text-lg">
                                         <div className="w-8 h-8 rounded-full bg-mustard/10 flex items-center justify-center text-sm">✓</div>
                                         {item}
@@ -213,30 +252,48 @@ export function MarketingSite() {
                                 ))}
                             </ul>
                         </div>
-                    </TiltCard>
+                    </div>
+                </div>
+            </section>
+
+            {/* STATS / SOCIAL PROOF */}
+            <section className="py-20 bg-forest text-white">
+                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
+                    <div>
+                        <div className="text-5xl font-black font-serif mb-2 text-mustard">1,000+</div>
+                        <div className="text-forest-light font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_1')}</div>
+                    </div>
+                    <div>
+                        <div className="text-5xl font-black font-serif mb-2 text-mustard">50k+</div>
+                        <div className="text-forest-light font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_2')}</div>
+                    </div>
+                    <div>
+                        <div className="text-5xl font-black font-serif mb-2 text-mustard">100k+</div>
+                        <div className="text-forest-light font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_3')}</div>
+                    </div>
                 </div>
             </section>
 
             {/* PRICING */}
-            <section id="pricing" className="py-32 px-6 relative overflow-hidden">
-                <div className="absolute bottom-0 w-full h-[80%] bg-forest rounded-t-[4rem] -z-20"></div>
-                {/* Texture */}
+            <section id="pricing" className="py-32 relative overflow-hidden bg-ink text-white">
                 <div className="absolute bottom-0 w-full h-[80%] opacity-10 -z-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
 
-                <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif">Einfalt verð.<br />Engin skuldbinding.</h2>
-                    <p className="text-forest-100 text-xl mb-16 max-w-lg mx-auto">Fjárfesting í framtíð fjölskyldunnar kostar minna en ein bíóferð.</p>
+                <div className="max-w-4xl mx-auto text-center relative z-10 px-6">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif">
+                        <Trans i18nKey="marketing.pricing_title" components={{ 1: <br /> }} />
+                    </h2>
+                    <p className="text-forest-100 text-xl mb-16 max-w-lg mx-auto">{t('marketing.pricing_subtitle')}</p>
 
                     <div className="grid md:grid-cols-2 gap-8 items-center">
 
                         {/* Monthly */}
                         <TiltCard>
                             <div className="bg-forest-light/20 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 text-white hover:bg-white/10 transition-colors">
-                                <h3 className="text-xl font-bold mb-2 opacity-80">Mánaðarlega</h3>
+                                <h3 className="text-xl font-bold mb-2 opacity-80">{t('marketing.monthly')}</h3>
                                 <div className="text-5xl font-serif font-bold mb-2">2.990 kr</div>
-                                <div className="text-sm opacity-60 mb-8 font-medium">gjaldfært mánaðarlega</div>
+                                <div className="text-sm opacity-60 mb-8 font-medium">{t('marketing.billed_monthly')}</div>
                                 <Button variant="outline" className="w-full border-white/30 text-white hover:bg-white/10">
-                                    Velja mánuð
+                                    {t('marketing.choose_monthly')}
                                 </Button>
                             </div>
                         </TiltCard>
@@ -245,36 +302,72 @@ export function MarketingSite() {
                         <TiltCard>
                             <div className="bg-mustard p-10 rounded-[2.5rem] border-4 border-white/20 shadow-2xl relative text-ink">
                                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-mustard px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
-                                    Mest virði
+                                    {t('marketing.best_value')}
                                 </div>
-                                <h3 className="text-xl font-bold mb-2 opacity-80">Árskort</h3>
+                                <h3 className="text-xl font-bold mb-2 opacity-80">{t('marketing.annual')}</h3>
                                 <div className="text-5xl font-serif font-bold mb-2">26.900 kr</div>
-                                <div className="text-sm opacity-60 mb-6 font-medium">fyrir allt árið</div>
+                                <div className="text-sm opacity-60 mb-6 font-medium">{t('marketing.for_year')}</div>
 
                                 <div className="bg-white/40 rounded-2xl p-4 mb-8 font-bold text-sm flex items-center justify-center gap-2">
-                                    <span className="text-xl">🎁</span> Fáðu 3 mánuði frítt
+                                    <span className="text-xl">🎁</span> {t('marketing.get_3_months_free')}
                                 </div>
 
                                 <Button variant="primary" className="w-full bg-ink text-white hover:bg-black shadow-xl shadow-ink/20">
-                                    Prófa frítt í 14 daga
+                                    {t('marketing.try_free_14_days')}
                                 </Button>
                             </div>
                         </TiltCard>
-
                     </div>
                 </div>
             </section>
 
+            {/* FAQ - SEO Structured Data */}
+            <section className="py-24 bg-paper" id="faq">
+                <div className="max-w-3xl mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-ink">{t('faq.title')}</h2>
+                    </div>
+
+                    <div className="space-y-2">
+                        <FAQItem question={t('faq.q1')} answer={t('faq.a1')} />
+                        <FAQItem question={t('faq.q2')} answer={t('faq.a2')} />
+                        <FAQItem question={t('faq.q3')} answer={t('faq.a3')} />
+                        <FAQItem question={t('faq.q4')} answer={t('faq.a4')} />
+                        <FAQItem question={t('faq.q5')} answer={t('faq.a5')} />
+                    </div>
+
+                    {/* Hidden JSON-LD for SEO */}
+                    <script type="application/ld+json" dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [1, 2, 3, 4, 5].map(i => ({
+                                "@type": "Question",
+                                "name": t(`faq.q${i}`),
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": t(`faq.a${i}`)
+                                }
+                            }))
+                        })
+                    }} />
+                </div>
+            </section>
+
             {/* FOOTER */}
-            <footer className="bg-forest-light py-12 px-6 text-white text-center relative z-20">
+            <footer className="bg-ink text-white/40 py-12 border-t border-white/10">
                 <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
-                    <span className="font-serif text-3xl font-bold tracking-tight">Samveran</span>
-                    <div className="text-white/60 text-sm font-medium">
-                        © 2024 Leikur að læra. Öll réttindi áskilin.
+                    <span className="font-serif text-3xl font-bold tracking-tight text-white">FamilyLifeOS</span>
+                    <div className="text-sm font-medium">
+                        {t('marketing.footer_rights')}
+                    </div>
+                    <div className="flex gap-4 text-xs font-bold uppercase tracking-widest text-white/20 hover:text-white/40 cursor-pointer transition-colors">
+                        <span>Privacy Policy</span>
+                        <span>Terms of Service</span>
+                        <span>Contact</span>
                     </div>
                 </div>
             </footer>
-
         </div>
     );
 }

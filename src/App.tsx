@@ -15,8 +15,11 @@ import { app } from './lib/firebase';
 import { useAuth } from './context/AuthContext';
 import { checkUserFamily } from './lib/firestore-utils';
 import { useFamilyMembers, useMemories } from './hooks/useFirestoreData';
+import LanguageSwitcher from './components/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+    const { t, i18n } = useTranslation();
     const { currentUser, logout } = useAuth();
     const [familyId, setFamilyId] = useState<string | null>(null);
 
@@ -74,10 +77,10 @@ function App() {
                 <AmbientBackground themeName="indigo" />
                 <div className="text-center space-y-4 z-10 relative">
                     <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-200 border-t-indigo-600 mx-auto"></div>
-                    <p className="text-indigo-900 font-bold animate-pulse">Loading Family...</p>
+                    <p className="text-indigo-900 font-bold animate-pulse">{t('dashboard.loading')}</p>
                     {!membersLoading && !activeProfile && (
                         <p className="text-sm text-red-500 bg-white/80 p-2 rounded">
-                            Critical Error: Member profile not found for this user in this family.
+                            {t('dashboard.critical_error')}
                         </p>
                     )}
                 </div>
@@ -106,7 +109,10 @@ function App() {
                     </div>
                 </div>
 
-                <h1 className="text-lg font-serif font-black italic tracking-tighter text-indigo-600/20">FamilyLifeOS</h1>
+                <div className="flex items-center gap-2">
+                    <LanguageSwitcher />
+                    <h1 className="text-lg font-serif font-black italic tracking-tighter text-indigo-600/20 hidden sm:block">FamilyLifeOS</h1>
+                </div>
             </header>
 
             {/* MAIN CONTENT AREA */}
@@ -141,7 +147,7 @@ function App() {
                                         <div className="relative z-10 flex flex-col items-start gap-4">
                                             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 uppercase text-[10px] font-bold tracking-widest shadow-inner">
                                                 <span>{currentTheme?.icon}</span>
-                                                <span>Vika {currentQuest.weekId}</span>
+                                                <span>{t('dashboard.week')} {currentQuest.weekId}</span>
                                             </div>
 
                                             <div>
@@ -156,7 +162,7 @@ function App() {
                                                 className="mt-2 bg-white text-indigo-950 hover:bg-indigo-50 shadow-xl"
                                             >
                                                 <Plus size={18} strokeWidth={3} />
-                                                Skrá Verkefni
+                                                {t('dashboard.log_task')}
                                                 <span className="bg-indigo-100/50 px-2 py-0.5 rounded-lg text-xs ml-1 font-extrabold">+ {currentQuest.xpReward} XP</span>
                                             </Button>
                                         </div>
@@ -171,8 +177,8 @@ function App() {
                             {/* Recent Memories Teaser */}
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between ml-2">
-                                    <h3 className="font-bold text-slate-400 text-sm uppercase tracking-wider">Nýlegar Minningar</h3>
-                                    <button onClick={() => setView('vault')} className="text-indigo-600 text-xs font-bold uppercase tracking-wider hover:text-indigo-800 transition-colors">Sjá Allt</button>
+                                    <h3 className="font-bold text-slate-400 text-sm uppercase tracking-wider">{t('dashboard.recent_memories')}</h3>
+                                    <button onClick={() => setView('vault')} className="text-indigo-600 text-xs font-bold uppercase tracking-wider hover:text-indigo-800 transition-colors">{t('common.view_all')}</button>
                                 </div>
 
                                 {memories.slice(0, 3).map(mem => (
@@ -183,12 +189,14 @@ function App() {
                                         whileTap={{ scale: 0.98 }}
                                     >
                                         <div className="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300 shadow-sm">🌱</div>
-                                        <div className="flex-1 min-w-0">
-                                            <h4 className="font-bold text-slate-800 text-sm truncate w-full mb-1">{mem.content}</h4>
-                                            <p className="text-xs text-slate-500 flex items-center gap-2">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-green-400"></span>
-                                                {new Date(mem.createdAt).toLocaleDateString()}
-                                            </p>
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-1 m-2 bg-indigo-200 rounded-full self-stretch" />
+                                            <div>
+                                                <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+                                                    {new Date(mem.createdAt).toLocaleDateString(i18n.language)}
+                                                </div>
+                                                <p className="text-slate-700 font-medium line-clamp-2">{mem.content}</p>
+                                            </div>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -196,7 +204,7 @@ function App() {
 
                             {/* TOOLS GRID */}
                             <div className="pb-24">
-                                <h3 className="text-sm font-bold text-slate-400 mb-4 px-2 uppercase tracking-wider">Tólin ykkar</h3>
+                                <h3 className="text-sm font-bold text-slate-400 mb-4 px-2 uppercase tracking-wider">{t('dashboard.your_tools')}</h3>
                                 <div className="grid grid-cols-2 gap-4">
                                     <button
                                         onClick={() => setShowMeeting(true)}
@@ -207,7 +215,7 @@ function App() {
                                             <MessageCircle size={28} className="relative z-10" />
                                         </div>
                                         <div className="text-center">
-                                            <span className="block font-bold text-slate-700 text-lg group-hover:text-indigo-600 transition-colors">Vikufundur</span>
+                                            <span className="block font-bold text-slate-700 text-lg group-hover:text-indigo-600 transition-colors">{t('dashboard.weekly_meeting')}</span>
                                             <span className="text-xs text-slate-400 font-medium">4 skref</span>
                                         </div>
                                     </button>
@@ -217,8 +225,8 @@ function App() {
                                             <span className="text-3xl">🧹</span>
                                         </div>
                                         <div className="text-center">
-                                            <span className="block font-bold text-slate-700 text-lg">Húsverk</span>
-                                            <span className="text-xs text-slate-400 font-medium">Væntanlegt...</span>
+                                            <span className="block font-bold text-slate-700 text-lg">{t('dashboard.chores')}</span>
+                                            <span className="text-xs text-slate-400 font-medium">{t('common.coming_soon')}</span>
                                         </div>
                                     </button>
                                 </div>
@@ -241,9 +249,9 @@ function App() {
                                 onSave={(data) => {
                                     handleSaveMemory(data);
                                     if (currentQuest) {
-                                        showToast(`Vel gert! +${currentQuest.xpReward} XP fyrir ${activeProfile.name}!`);
+                                        showToast(t('dashboard.toast_xp_gain', { xp: currentQuest.xpReward, name: activeProfile.name }));
                                     } else {
-                                        showToast("Minning vistuð!");
+                                        showToast(t('dashboard.toast_memory_saved'));
                                     }
                                 }}
                             />
@@ -281,7 +289,7 @@ function App() {
             {/* BOTTOM NAV BAR */}
             <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-slate-200/60 p-2 safe-bottom z-40 shadow-up">
                 <div className="flex justify-around items-center max-w-lg mx-auto relative">
-                    <NavBtn icon={<LayoutGrid size={24} />} label="Home" active={view === 'dashboard'} onClick={() => setView('dashboard')} />
+                    <NavBtn icon={<LayoutGrid size={24} />} label={t('nav.home')} active={view === 'dashboard'} onClick={() => setView('dashboard')} />
 
                     <div className="relative -top-8 group">
                         <div className="absolute inset-0 bg-indigo-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity animate-pulse"></div>
@@ -293,7 +301,7 @@ function App() {
                         </button>
                     </div>
 
-                    <NavBtn icon={<History size={24} />} label="Vault" active={view === 'vault'} onClick={() => setView('vault')} />
+                    <NavBtn icon={<History size={24} />} label={t('nav.vault')} active={view === 'vault'} onClick={() => setView('vault')} />
                 </div>
             </nav>
         </div>
