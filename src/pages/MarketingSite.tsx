@@ -262,16 +262,16 @@ export function MarketingSite() {
             <section className="py-20 text-white" style={{ backgroundColor: '#2d4a3e' }}>
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">1,000+</div>
-                        <div className="text-[#3d6152] font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_1')}</div>
+                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#e0a458' }}>1,000+</div>
+                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#d1fae5' }}>{t('social_proof.stat_1')}</div>
                     </div>
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">50k+</div>
-                        <div className="text-[#3d6152] font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_2')}</div>
+                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#e0a458' }}>50k+</div>
+                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#d1fae5' }}>{t('social_proof.stat_2')}</div>
                     </div>
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">100k+</div>
-                        <div className="text-[#3d6152] font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_3')}</div>
+                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#e0a458' }}>100k+</div>
+                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#d1fae5' }}>{t('social_proof.stat_3')}</div>
                     </div>
                 </div>
             </section>
