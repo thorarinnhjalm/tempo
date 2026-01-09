@@ -18,10 +18,10 @@ export function Button({
 }: ButtonProps) {
 
     const variants = {
-        primary: "bg-forest text-white shadow-lg shadow-forest/20 hover:bg-forest-light border-2 border-transparent",
-        secondary: "bg-clay text-white shadow-lg shadow-clay/20 hover:bg-[#c06548] border-2 border-transparent",
-        outline: "bg-transparent text-forest border-2 border-forest/10 hover:bg-forest/5",
-        ghost: "bg-transparent text-forest hover:bg-forest/5 border-2 border-transparent",
+        primary: "bg-[#2d4a3e] text-white shadow-lg shadow-[#2d4a3e]/20 hover:bg-[#3d6152] border-2 border-transparent",
+        secondary: "bg-[#d97757] text-white shadow-lg shadow-[#d97757]/20 hover:bg-[#c06548] border-2 border-transparent",
+        outline: "bg-transparent text-[#2d4a3e] border-2 border-[#2d4a3e]/10 hover:bg-[#2d4a3e]/5",
+        ghost: "bg-transparent text-[#2d4a3e] hover:bg-[#2d4a3e]/5 border-2 border-transparent",
     };
 
     const sizes = {

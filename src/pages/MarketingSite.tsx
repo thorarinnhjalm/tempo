@@ -19,7 +19,7 @@ export function MarketingSite() {
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex items-center justify-between w-full py-6 text-left group"
                 >
-                    <span className="text-lg font-serif font-bold text-ink group-hover:text-forest transition-colors">{question}</span>
+                    <span className="text-lg font-serif font-bold text-[#2c332e] group-hover:text-[#2d4a3e] transition-colors">{question}</span>
                     <ChevronDown className={`transition-transform duration-300 text-stone-400 ${isOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
@@ -41,7 +41,7 @@ export function MarketingSite() {
     };
 
     return (
-        <div className="min-h-screen font-sans bg-paper selection:bg-clay selection:text-white overflow-x-hidden relative">
+        <div className="min-h-screen font-sans bg-[#fcfaf8] selection:bg-[#d97757] selection:text-white overflow-x-hidden relative">
             <SeoHead />
 
             <AmbientBackground themeName="warm" />
@@ -50,16 +50,16 @@ export function MarketingSite() {
             <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 border-b border-white/50">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <div className="w-10 h-10 bg-gradient-to-br from-forest to-forest-light rounded-xl flex items-center justify-center text-white font-serif font-black text-xl shadow-lg">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#2d4a3e] to-[#3d6152] rounded-xl flex items-center justify-center text-white font-serif font-black text-xl shadow-lg">
                             F
                         </div>
-                        <span className="font-serif font-bold text-xl tracking-tight text-ink hidden sm:block">FamilyLifeOS</span>
+                        <span className="font-serif font-bold text-xl tracking-tight text-[#2c332e] hidden sm:block">FamilyLifeOS</span>
                     </div>
 
-                    <div className="hidden md:flex items-center gap-8 font-medium text-forest-light">
-                        <a href="#features" className="hover:text-forest transition-colors">{t('marketing.nav_tools')}</a>
-                        <a href="#methodology" className="hover:text-forest transition-colors">{t('marketing.nav_worlds')}</a>
-                        <a href="#pricing" className="hover:text-forest transition-colors">{t('marketing.nav_pricing')}</a>
+                    <div className="hidden md:flex items-center gap-8 font-medium text-[#3d6152]">
+                        <a href="#features" className="hover:text-[#2d4a3e] transition-colors">{t('marketing.nav_tools')}</a>
+                        <a href="#methodology" className="hover:text-[#2d4a3e] transition-colors">{t('marketing.nav_worlds')}</a>
+                        <a href="#pricing" className="hover:text-[#2d4a3e] transition-colors">{t('marketing.nav_pricing')}</a>
                         <LanguageSwitcher />
                     </div>
 
@@ -73,21 +73,21 @@ export function MarketingSite() {
                     <div className="relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mustard/10 text-mustard-dark font-bold text-sm tracking-wide uppercase border border-mustard/20 mb-8"
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e0a458]/10 text-[#b37628] font-bold text-sm tracking-wide uppercase border border-[#e0a458]/20 mb-8"
                         >
                             <Star size={14} fill="currentColor" /> {t('marketing.leikur_ad_laera')}
                         </motion.div>
 
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-bold leading-[1.1] text-ink font-serif mb-6"
+                            className="text-5xl md:text-7xl font-bold leading-[1.1] text-[#2c332e] font-serif mb-6"
                         >
                             <Trans
                                 i18nKey="marketing.hero_title"
                                 components={{
-                                    1: <span className="text-clay-dark italic relative" />,
+                                    1: <span className="text-[#b05436] italic relative" />,
                                     2: <motion.span
-                                        className="absolute bottom-1 left-0 w-full h-3 bg-clay/20 -z-10 rounded-full"
+                                        className="absolute bottom-1 left-0 w-full h-3 bg-[#d97757]/20 -z-10 rounded-full"
                                         initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ delay: 0.8, duration: 0.8 }}
                                     />
                                 }}
@@ -126,7 +126,7 @@ export function MarketingSite() {
                     {/* HERO IMAGE / INTERFACE */}
                     <div className="relative perspective-[2000px]">
                         <TiltCard className="relative z-10 bg-white rounded-[2.5rem] shadow-2xl border-4 border-white/50 overflow-hidden max-w-md mx-auto lg:ml-auto lg:mr-0 rotate-y-[-12deg] rotate-x-[5deg]">
-                            <div className="bg-forest px-8 py-10 text-white text-center pb-16 relative overflow-hidden">
+                            <div className="bg-[#2d4a3e] px-8 py-10 text-white text-center pb-16 relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                                 <div className="inline-block bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 shadow-sm border border-white/10">
                                     {t('marketing.weekly_quest')}
@@ -142,7 +142,7 @@ export function MarketingSite() {
                                 <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
                                     <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-2xl border-2 border-white shadow-sm">🦁</div>
                                     <div>
-                                        <div className="font-bold text-ink">{t('marketing.mock_john_joined')}</div>
+                                        <div className="font-bold text-[#2c332e]">{t('marketing.mock_john_joined')}</div>
                                         <div className="text-xs text-slate-500 font-medium">✨ +500 XP</div>
                                     </div>
                                     <div className="ml-auto text-green-500"><Check size={20} /></div>
@@ -150,16 +150,16 @@ export function MarketingSite() {
                                 <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4 opacity-60">
                                     <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-2xl border-2 border-white shadow-sm">🦄</div>
                                     <div>
-                                        <div className="font-bold text-ink">{t('marketing.mock_anna_joined')}</div>
+                                        <div className="font-bold text-[#2c332e]">{t('marketing.mock_anna_joined')}</div>
                                         <div className="text-xs text-slate-500">{t('marketing.mock_waiting')}</div>
                                     </div>
                                 </div>
 
                                 <div className="my-6 h-px bg-slate-200 w-full"></div>
 
-                                <div className="bg-forest/5 p-4 rounded-2xl border border-forest/10">
-                                    <h4 className="font-bold text-forest text-sm mb-2">{t('marketing.purpose')}</h4>
-                                    <p className="text-xs text-forest/70 leading-relaxed">
+                                <div className="bg-[#2d4a3e]/5 p-4 rounded-2xl border border-[#2d4a3e]/10">
+                                    <h4 className="font-bold text-[#2d4a3e] text-sm mb-2">{t('marketing.purpose')}</h4>
+                                    <p className="text-xs text-[#2d4a3e]/70 leading-relaxed">
                                         {t('marketing.purpose_desc')}
                                     </p>
                                 </div>
@@ -167,7 +167,7 @@ export function MarketingSite() {
                         </TiltCard>
 
                         {/* Decorative Blob */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-forest/20 to-mustard/20 blur-3xl -z-10 rounded-full mix-blend-multiply" />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-[#2d4a3e]/20 to-[#e0a458]/20 blur-3xl -z-10 rounded-full mix-blend-multiply" />
                     </div>
                 </div>
             </header>
@@ -177,20 +177,20 @@ export function MarketingSite() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <span className="text-clay-dark font-bold tracking-widest uppercase text-sm mb-2 block">The Struggle</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-6">{t('marketing.problem_title')}</h2>
+                            <span className="text-[#b05436] font-bold tracking-widest uppercase text-sm mb-2 block">The Struggle</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2c332e] mb-6">{t('marketing.problem_title')}</h2>
                             <p className="text-xl text-stone-600 leading-relaxed mb-8">
                                 {t('marketing.problem_desc')}
                             </p>
                             <div className="h-1 w-20 bg-stone-200 rounded-full" />
                         </div>
                         <div>
-                            <span className="text-forest font-bold tracking-widest uppercase text-sm mb-2 block">The Solution</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-6">{t('marketing.solution_title')}</h2>
+                            <span className="text-[#2d4a3e] font-bold tracking-widest uppercase text-sm mb-2 block">The Solution</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2c332e] mb-6">{t('marketing.solution_title')}</h2>
                             <p className="text-xl text-stone-600 leading-relaxed mb-8">
                                 {t('marketing.solution_desc')}
                             </p>
-                            <Button onClick={() => window.location.href = '/login'} className="bg-forest text-white shadow-forest-light/50 shadow-lg">
+                            <Button onClick={() => window.location.href = '/login'} className="bg-[#2d4a3e] text-white shadow-[#3d6152]/50 shadow-lg">
                                 {t('marketing.start_journey')}
                             </Button>
                         </div>
@@ -203,28 +203,28 @@ export function MarketingSite() {
                 <div className="absolute inset-0 bg-stone-50 skew-y-3 -z-10 origin-top transform scale-[1.1]"></div>
 
                 <div className="max-w-4xl mx-auto px-6 text-center mb-16 relative">
-                    <h2 className="text-4xl md:text-5xl font-bold text-ink mb-6 font-serif">{t('marketing.two_systems')}</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#2c332e] mb-6 font-serif">{t('marketing.two_systems')}</h2>
                     <p className="text-xl text-stone-600 leading-relaxed">{t('marketing.two_systems_desc')}</p>
                 </div>
 
                 <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
                     {/* System 1: Utility */}
                     <div className="group relative">
-                        <div className="absolute inset-0 bg-forest rounded-[3rem] rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 bg-[#2d4a3e] rounded-[3rem] rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
                         <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
-                            <div className="w-16 h-16 bg-forest/10 rounded-2xl flex items-center justify-center text-forest mb-8">
+                            <div className="w-16 h-16 bg-[#2d4a3e]/10 rounded-2xl flex items-center justify-center text-[#2d4a3e] mb-8">
                                 <Shield size={32} />
                             </div>
 
-                            <h3 className="text-3xl font-bold mb-4 font-serif text-ink">Family OS</h3>
+                            <h3 className="text-3xl font-bold mb-4 font-serif text-[#2c332e]">Family OS</h3>
                             <p className="text-stone-600 mb-8 leading-relaxed text-lg">
                                 {t('marketing.family_os_desc')}
                             </p>
 
                             <ul className="space-y-4 mt-auto">
                                 {[t('marketing.feat_weekly_meetings'), t('marketing.feat_screen_rules'), t('marketing.feat_task_org')].map(item => (
-                                    <li key={item} className="flex items-center gap-3 font-bold text-forest text-lg">
-                                        <div className="w-8 h-8 rounded-full bg-forest/10 flex items-center justify-center text-sm">✓</div>
+                                    <li key={item} className="flex items-center gap-3 font-bold text-[#2d4a3e] text-lg">
+                                        <div className="w-8 h-8 rounded-full bg-[#2d4a3e]/10 flex items-center justify-center text-sm">✓</div>
                                         {item}
                                     </li>
                                 ))}
@@ -234,21 +234,21 @@ export function MarketingSite() {
 
                     {/* System 2: Play */}
                     <div className="group relative pt-12 md:pt-0">
-                        <div className="absolute inset-0 bg-mustard rounded-[3rem] -rotate-1 group-hover:-rotate-2 transition-transform duration-500 md:top-0 top-12"></div>
+                        <div className="absolute inset-0 bg-[#e0a458] rounded-[3rem] -rotate-1 group-hover:-rotate-2 transition-transform duration-500 md:top-0 top-12"></div>
                         <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
-                            <div className="w-16 h-16 bg-mustard/10 rounded-2xl flex items-center justify-center text-mustard-dark mb-8">
+                            <div className="w-16 h-16 bg-[#e0a458]/10 rounded-2xl flex items-center justify-center text-[#b37628] mb-8">
                                 <Sparkles size={32} />
                             </div>
 
-                            <h3 className="text-3xl font-bold mb-4 font-serif text-ink">Memory Builder</h3>
+                            <h3 className="text-3xl font-bold mb-4 font-serif text-[#2c332e]">Memory Builder</h3>
                             <p className="text-stone-600 mb-8 leading-relaxed text-lg">
                                 {t('marketing.memory_builder_desc')}
                             </p>
 
                             <ul className="space-y-4 mt-auto">
                                 {[t('marketing.feat_diary'), t('marketing.feat_audio'), t('marketing.feat_emotions')].map(item => (
-                                    <li key={item} className="flex items-center gap-3 font-bold text-mustard-dark text-lg">
-                                        <div className="w-8 h-8 rounded-full bg-mustard/10 flex items-center justify-center text-sm">✓</div>
+                                    <li key={item} className="flex items-center gap-3 font-bold text-[#b37628] text-lg">
+                                        <div className="w-8 h-8 rounded-full bg-[#e0a458]/10 flex items-center justify-center text-sm">✓</div>
                                         {item}
                                     </li>
                                 ))}
@@ -259,19 +259,19 @@ export function MarketingSite() {
             </section>
 
             {/* STATS / SOCIAL PROOF */}
-            <section className="py-20 bg-forest text-white">
+            <section className="py-20 bg-[#2d4a3e] text-white">
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2 text-mustard">1,000+</div>
-                        <div className="text-forest-light font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_1')}</div>
+                        <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">1,000+</div>
+                        <div className="text-[#3d6152] font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_1')}</div>
                     </div>
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2 text-mustard">50k+</div>
-                        <div className="text-forest-light font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_2')}</div>
+                        <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">50k+</div>
+                        <div className="text-[#3d6152] font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_2')}</div>
                     </div>
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2 text-mustard">100k+</div>
-                        <div className="text-forest-light font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_3')}</div>
+                        <div className="text-5xl font-black font-serif mb-2 text-[#e0a458]">100k+</div>
+                        <div className="text-[#3d6152] font-bold uppercase tracking-widest text-sm">{t('social_proof.stat_3')}</div>
                     </div>
                 </div>
             </section>
@@ -290,7 +290,7 @@ export function MarketingSite() {
 
                         {/* Monthly */}
                         <TiltCard>
-                            <div className="bg-forest-light/20 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 text-white hover:bg-white/10 transition-colors">
+                            <div className="bg-[#3d6152]/20 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 text-white hover:bg-white/10 transition-colors">
                                 <h3 className="text-xl font-bold mb-2 opacity-80">{t('marketing.monthly')}</h3>
                                 <div className="text-5xl font-serif font-bold mb-2">2.990 kr</div>
                                 <div className="text-sm opacity-60 mb-8 font-medium">{t('marketing.billed_monthly')}</div>
@@ -302,8 +302,8 @@ export function MarketingSite() {
 
                         {/* Annual */}
                         <TiltCard>
-                            <div className="bg-mustard p-10 rounded-[2.5rem] border-4 border-white/20 shadow-2xl relative text-ink">
-                                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-mustard-dark px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+                            <div className="bg-[#e0a458] p-10 rounded-[2.5rem] border-4 border-white/20 shadow-2xl relative text-[#2c332e]">
+                                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-[#b37628] px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
                                     {t('marketing.best_value')}
                                 </div>
                                 <h3 className="text-xl font-bold mb-2 opacity-80">{t('marketing.annual')}</h3>
@@ -314,7 +314,7 @@ export function MarketingSite() {
                                     <span className="text-xl">🎁</span> {t('marketing.get_3_months_free')}
                                 </div>
 
-                                <Button variant="primary" className="w-full bg-ink text-white hover:bg-black shadow-xl shadow-ink/20">
+                                <Button variant="primary" className="w-full bg-[#2c332e] text-white hover:bg-black shadow-xl shadow-[#2c332e]/20">
                                     {t('marketing.try_free_14_days')}
                                 </Button>
                             </div>
@@ -324,10 +324,10 @@ export function MarketingSite() {
             </section>
 
             {/* FAQ - SEO Structured Data */}
-            <section className="py-24 bg-paper" id="faq">
+            <section className="py-24 bg-[#fcfaf8]" id="faq">
                 <div className="max-w-3xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-ink">{t('faq.title')}</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2c332e]">{t('faq.title')}</h2>
                     </div>
 
                     <div className="space-y-2">
@@ -357,7 +357,7 @@ export function MarketingSite() {
             </section>
 
             {/* FOOTER */}
-            <footer className="bg-ink text-white/40 py-12 border-t border-white/10">
+            <footer className="bg-[#2c332e] text-white/40 py-12 border-t border-white/10">
                 <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
                     <span className="font-serif text-3xl font-bold tracking-tight text-white">FamilyLifeOS</span>
                     <div className="text-sm font-medium">

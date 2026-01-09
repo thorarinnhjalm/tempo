@@ -7,8 +7,8 @@
 @layer base {
   body {
     @apply antialiased;
-    color: theme('colors.ink');
-    background-color: theme('colors.paper');
+    color: #2c332e;
+    background-color: #fcfaf8;
     font-family: 'Quicksand', 'Nunito', sans-serif;
   }
 
