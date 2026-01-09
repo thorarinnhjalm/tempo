@@ -41,7 +41,7 @@ export function MarketingSite() {
     };
 
     return (
-        <div className="min-h-screen font-sans bg-[#fcfaf8] selection:bg-[#d97757] selection:text-white overflow-x-hidden relative">
+        <div className="min-h-screen font-sans bg-[#ffffff] selection:bg-[#d97757] selection:text-white overflow-x-hidden relative">
             <SeoHead />
 
             <AmbientBackground themeName="warm" />
@@ -259,7 +259,7 @@ export function MarketingSite() {
             </section>
 
             {/* STATS / SOCIAL PROOF */}
-            <section className="py-20" style={{ backgroundColor: '#fcfaf8', color: '#2c332e' }}>
+            <section className="py-20" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
                     <div>
                         <div className="text-5xl font-black font-serif mb-2" style={{ color: '#2d4a3e' }}>1,000+</div>
@@ -322,7 +322,7 @@ export function MarketingSite() {
             </section>
 
             {/* FAQ - SEO Structured Data */}
-            <section className="py-24" id="faq" style={{ backgroundColor: '#fcfaf8' }}>
+            <section className="py-24" id="faq" style={{ backgroundColor: '#ffffff' }}>
                 <div className="max-w-3xl mx-auto px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-serif font-bold" style={{ color: '#2c332e' }}>{t('faq.title')}</h2>
@@ -355,7 +355,7 @@ export function MarketingSite() {
             </section>
 
             {/* FOOTER */}
-            <footer className="py-12 border-t border-stone-200" style={{ backgroundColor: '#fcfaf8', color: '#2c332e' }}>
+            <footer className="py-12 border-t border-stone-200" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
                 <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
                     <span className="font-serif text-3xl font-bold tracking-tight" style={{ color: '#2c332e' }}>FamilyLifeOS</span>
                     <div className="text-sm font-medium" style={{ color: '#57534e' }}>
