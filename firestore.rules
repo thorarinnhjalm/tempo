@@ -1,0 +1,26 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // LOCKDOWN: Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // FAMILIES: Only members of the family can read/write
+    match /families/{familyId} {
+      // TODO: Add stricter check (e.g. resource.data.memberIds)
+      allow read, write: if request.auth != null;
+    }
+    
+    // MEMBERS: Authenticated users can read/write members
+    match /members/{memberId} {
+        allow read, write: if request.auth != null;
+    }
+    
+    // MEMORIES: Authenticated users can read/write memories
+    match /memories/{memoryId} {
+        allow read, write: if request.auth != null;
+    }
+  }
+}
