@@ -30,7 +30,7 @@ export function MarketingSite() {
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden"
                         >
-                            <p className="pb-6 text-stone-600 leading-relaxed font-medium">
+                            <p className="pb-6 leading-relaxed font-medium" style={{ color: '#57534e' }}>
                                 {answer}
                             </p>
                         </motion.div>
@@ -173,24 +173,24 @@ export function MarketingSite() {
             </header>
 
             {/* PROBLEM / SOLUTION */}
-            <section className="py-24 bg-white relative overflow-hidden">
+            <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <span className="text-[#b05436] font-bold tracking-widest uppercase text-sm mb-2 block">The Struggle</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2c332e] mb-6">{t('marketing.problem_title')}</h2>
-                            <p className="text-xl text-stone-600 leading-relaxed mb-8">
+                            <span className="font-bold tracking-widest uppercase text-sm mb-2 block" style={{ color: '#b05436' }}>The Struggle</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6" style={{ color: '#2c332e' }}>{t('marketing.problem_title')}</h2>
+                            <p className="text-xl leading-relaxed mb-8" style={{ color: '#57534e' }}>
                                 {t('marketing.problem_desc')}
                             </p>
-                            <div className="h-1 w-20 bg-stone-200 rounded-full" />
+                            <div className="h-1 w-20 rounded-full" style={{ backgroundColor: '#e7e5e4' }} />
                         </div>
                         <div>
-                            <span className="text-[#2d4a3e] font-bold tracking-widest uppercase text-sm mb-2 block">The Solution</span>
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#2c332e] mb-6">{t('marketing.solution_title')}</h2>
-                            <p className="text-xl text-stone-600 leading-relaxed mb-8">
+                            <span className="font-bold tracking-widest uppercase text-sm mb-2 block" style={{ color: '#2d4a3e' }}>The Solution</span>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6" style={{ color: '#2c332e' }}>{t('marketing.solution_title')}</h2>
+                            <p className="text-xl leading-relaxed mb-8" style={{ color: '#57534e' }}>
                                 {t('marketing.solution_desc')}
                             </p>
-                            <Button onClick={() => window.location.href = '/login'} className="bg-[#2d4a3e] text-white shadow-[#3d6152]/50 shadow-lg">
+                            <Button onClick={() => window.location.href = '/login'} className="shadow-lg" style={{ backgroundColor: '#2d4a3e', color: '#ffffff' }}>
                                 {t('marketing.start_journey')}
                             </Button>
                         </div>
@@ -324,10 +324,10 @@ export function MarketingSite() {
             </section>
 
             {/* FAQ - SEO Structured Data */}
-            <section className="py-24 bg-[#fcfaf8]" id="faq">
+            <section className="py-24" id="faq" style={{ backgroundColor: '#fcfaf8' }}>
                 <div className="max-w-3xl mx-auto px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2c332e]">{t('faq.title')}</h2>
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold" style={{ color: '#2c332e' }}>{t('faq.title')}</h2>
                     </div>
 
                     <div className="space-y-2">
