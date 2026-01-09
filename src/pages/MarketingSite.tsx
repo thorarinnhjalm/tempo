@@ -199,32 +199,32 @@ export function MarketingSite() {
             </section>
 
             {/* FEATURES / TWO SYSTEMS */}
-            <section id="features" className="py-32 relative bg-stone-100">
+            <section id="features" className="py-32 relative bg-stone-100" style={{ backgroundColor: '#f5f5f4' }}>
                 <div className="absolute inset-0 bg-stone-50 skew-y-3 -z-10 origin-top transform scale-[1.1]"></div>
 
                 <div className="max-w-4xl mx-auto px-6 text-center mb-16 relative">
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#2c332e] mb-6 font-serif">{t('marketing.two_systems')}</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif" style={{ color: '#2c332e' }}>{t('marketing.two_systems')}</h2>
                     <p className="text-xl text-stone-600 leading-relaxed">{t('marketing.two_systems_desc')}</p>
                 </div>
 
                 <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8">
                     {/* System 1: Utility */}
                     <div className="group relative">
-                        <div className="absolute inset-0 bg-[#2d4a3e] rounded-[3rem] rotate-1 group-hover:rotate-2 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 rounded-[3rem] rotate-1 group-hover:rotate-2 transition-transform duration-500" style={{ backgroundColor: '#2d4a3e' }}></div>
                         <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
-                            <div className="w-16 h-16 bg-[#2d4a3e]/10 rounded-2xl flex items-center justify-center text-[#2d4a3e] mb-8">
+                            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8" style={{ backgroundColor: '#2d4a3e1a', color: '#2d4a3e' }}>
                                 <Shield size={32} />
                             </div>
 
-                            <h3 className="text-3xl font-bold mb-4 font-serif text-[#2c332e]">Family OS</h3>
+                            <h3 className="text-3xl font-bold mb-4 font-serif" style={{ color: '#2c332e' }}>Family OS</h3>
                             <p className="text-stone-600 mb-8 leading-relaxed text-lg">
                                 {t('marketing.family_os_desc')}
                             </p>
 
                             <ul className="space-y-4 mt-auto">
                                 {[t('marketing.feat_weekly_meetings'), t('marketing.feat_screen_rules'), t('marketing.feat_task_org')].map(item => (
-                                    <li key={item} className="flex items-center gap-3 font-bold text-[#2d4a3e] text-lg">
-                                        <div className="w-8 h-8 rounded-full bg-[#2d4a3e]/10 flex items-center justify-center text-sm">✓</div>
+                                    <li key={item} className="flex items-center gap-3 font-bold text-lg" style={{ color: '#2d4a3e' }}>
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm" style={{ backgroundColor: '#2d4a3e1a' }}>✓</div>
                                         {item}
                                     </li>
                                 ))}
@@ -234,21 +234,21 @@ export function MarketingSite() {
 
                     {/* System 2: Play */}
                     <div className="group relative pt-12 md:pt-0">
-                        <div className="absolute inset-0 bg-[#e0a458] rounded-[3rem] -rotate-1 group-hover:-rotate-2 transition-transform duration-500 md:top-0 top-12"></div>
+                        <div className="absolute inset-0 rounded-[3rem] -rotate-1 group-hover:-rotate-2 transition-transform duration-500 md:top-0 top-12" style={{ backgroundColor: '#e0a458' }}></div>
                         <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
-                            <div className="w-16 h-16 bg-[#e0a458]/10 rounded-2xl flex items-center justify-center text-[#b37628] mb-8">
+                            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8" style={{ backgroundColor: '#e0a4581a', color: '#b37628' }}>
                                 <Sparkles size={32} />
                             </div>
 
-                            <h3 className="text-3xl font-bold mb-4 font-serif text-[#2c332e]">Memory Builder</h3>
+                            <h3 className="text-3xl font-bold mb-4 font-serif" style={{ color: '#2c332e' }}>Memory Builder</h3>
                             <p className="text-stone-600 mb-8 leading-relaxed text-lg">
                                 {t('marketing.memory_builder_desc')}
                             </p>
 
                             <ul className="space-y-4 mt-auto">
                                 {[t('marketing.feat_diary'), t('marketing.feat_audio'), t('marketing.feat_emotions')].map(item => (
-                                    <li key={item} className="flex items-center gap-3 font-bold text-[#b37628] text-lg">
-                                        <div className="w-8 h-8 rounded-full bg-[#e0a458]/10 flex items-center justify-center text-sm">✓</div>
+                                    <li key={item} className="flex items-center gap-3 font-bold text-lg" style={{ color: '#b37628' }}>
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm" style={{ backgroundColor: '#e0a4581a' }}>✓</div>
                                         {item}
                                     </li>
                                 ))}
