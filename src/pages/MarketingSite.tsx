@@ -6,6 +6,7 @@ import { TiltCard } from '../components/TiltCard';
 import { AmbientBackground } from '../components/AmbientBackground';
 import { useTranslation, Trans } from 'react-i18next';
 import { SeoHead } from '../components/SeoHead';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
 
 export function MarketingSite() {
     const { t } = useTranslation();
@@ -59,6 +60,7 @@ export function MarketingSite() {
                         <a href="#features" className="hover:text-forest transition-colors">{t('marketing.nav_tools')}</a>
                         <a href="#methodology" className="hover:text-forest transition-colors">{t('marketing.nav_worlds')}</a>
                         <a href="#pricing" className="hover:text-forest transition-colors">{t('marketing.nav_pricing')}</a>
+                        <LanguageSwitcher />
                     </div>
 
                     <Button size="sm" onClick={() => window.location.href = '/login'}>{t('marketing.btn_try_free')}</Button>
@@ -111,7 +113,7 @@ export function MarketingSite() {
                             </Button>
                         </motion.div>
 
-                        <div className="mt-12 flex items-center gap-4 text-xs font-bold text-stone-400 uppercase tracking-widest">
+                        <div className="mt-12 flex items-center gap-4 text-xs font-bold text-stone-600 uppercase tracking-widest">
                             <div className="flex -space-x-2">
                                 {[1, 2, 3, 4].map(i => (
                                     <div key={i} className="w-8 h-8 rounded-full bg-stone-200 border-2 border-white" />

@@ -1,35 +1,24 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+import { Globe } from 'lucide-react';
 
-const LanguageSwitcher: React.FC = () => {
+export function LanguageSwitcher() {
     const { i18n } = useTranslation();
 
-    const changeLanguage = (lng: string) => {
-        i18n.changeLanguage(lng);
+    const toggleLanguage = () => {
+        const newLang = i18n.language === 'is' ? 'en' : 'is';
+        i18n.changeLanguage(newLang);
     };
 
     return (
-        <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full p-1 border border-white/20">
-            <button
-                onClick={() => changeLanguage('is')}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${i18n.language === 'is'
-                        ? 'bg-white text-indigo-900 shadow-sm'
-                        : 'text-white/70 hover:text-white hover:bg-white/10'
-                    }`}
-            >
-                IS
-            </button>
-            <button
-                onClick={() => changeLanguage('en')}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${i18n.language === 'en'
-                        ? 'bg-white text-indigo-900 shadow-sm'
-                        : 'text-white/70 hover:text-white hover:bg-white/10'
-                    }`}
-            >
-                EN
-            </button>
-        </div>
+        <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/10 text-ink text-sm font-bold transition-colors"
+        >
+            <Globe size={16} className="text-forest" />
+            <span className="w-5 text-center">{i18n.language === 'is' ? 'IS' : 'EN'}</span>
+        </motion.button>
     );
-};
-
-export default LanguageSwitcher;
+}

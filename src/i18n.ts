@@ -25,7 +25,8 @@ i18n
                 translation: is
             }
         },
-        fallbackLng: 'en',
+        lng: 'is', // Force default to Icelandic initially if no detection found or just as a strong default
+        fallbackLng: 'is',
         debug: true,
 
         interpolation: {
