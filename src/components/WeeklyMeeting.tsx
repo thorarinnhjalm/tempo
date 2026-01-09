@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, ArrowRight, MessageCircle, Utensils, Calendar as CalendarIcon, Wallet } from 'lucide-react';
+import { HelpBox } from './HelpBox';
 
 // Wizard Steps
 const STEPS = [
@@ -79,6 +80,9 @@ export function WeeklyMeeting({ onClose }: WeeklyMeetingProps) {
                                             </button>
                                         ))}
                                     </div>
+                                    <HelpBox className="mt-6" title="Af hverju að taka stöðuna?">
+                                        Það að ræða líðan opinskátt eykur tilfinningagreind og traust innan fjölskyldunnar.
+                                    </HelpBox>
                                 </div>
                             )}
 

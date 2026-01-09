@@ -2,6 +2,7 @@ import { Member, Memory } from '../types/firestore';
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { EmptyState } from './EmptyState';
 
 interface VaultProps {
     currentUser: Member;
@@ -28,11 +29,26 @@ export function Vault({ currentUser, memories, members }: VaultProps) {
                 <div className="absolute left-8 top-0 bottom-0 w-1 bg-indigo-100 rounded-full -translate-x-1/2" />
 
                 {myMemories.length === 0 ? (
-                    <div className="bg-white p-8 rounded-3xl border-2 border-dashed border-slate-200 text-center">
-                        <span className="text-4xl mb-4 block">📭</span>
-                        <h3 className="font-bold text-slate-700">{t('vault.empty_title')}</h3>
-                        <p className="text-slate-400 text-sm mt-2">{t('vault.empty_desc')}</p>
-                    </div>
+                    <EmptyState
+                        title="Hér er tómt eins og er"
+                        description="Engar minningar fundust. Byrjaðu á að skrá eftirminnilegt augnablik!"
+                        action={{
+                            label: "Skrá minningu",
+                            onClick: () => {
+                                // We need a way to open the create view from here. 
+                                // Since 'setView' is in App.tsx, we might need to emit an event or use context.
+                                // For now, let's assume the parent can pass a handler or we use a custom event.
+                                // EDIT: Looking at App.tsx, Vault doesn't have an onCreate prop.
+                                // I should check if I can modify Vault props first or handle it differently.
+                                // Actually, for this specific task, I can leave the onClick as a TODO or fix the props in the next step.
+                                // Better yet, I'll dispatch a custom event that App.tsx listens to, or just accept that I need to update App.tsx to pass a handler.
+                                // Let's use a custom event for loose coupling since I can't easily change the prop drilling right now without reading App.tsx again.
+                                // Wait, I AM editing Vault.tsx. I can add a prop `onCreate`.
+                                const event = new CustomEvent('open-create-memory');
+                                window.dispatchEvent(event);
+                            }
+                        }}
+                    />
                 ) : (
                     myMemories.map((memory, index) => (
                         <motion.div

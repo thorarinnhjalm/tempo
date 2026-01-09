@@ -17,6 +17,7 @@ import { checkUserFamily } from './lib/firestore-utils';
 import { useFamilyMembers, useMemories } from './hooks/useFirestoreData';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
+import { WelcomeModal } from './components/WelcomeModal';
 
 function App() {
     const { t, i18n } = useTranslation();
@@ -58,6 +59,13 @@ function App() {
         setToastMsg(msg);
         setTimeout(() => setToastMsg(null), 3000);
     };
+
+    // Event Listener for Empty States
+    useEffect(() => {
+        const handleOpenCreate = () => setView('create-memory');
+        window.addEventListener('open-create-memory', handleOpenCreate);
+        return () => window.removeEventListener('open-create-memory', handleOpenCreate);
+    }, []);
 
     const handleLogout = async () => {
         await logout();
@@ -277,13 +285,13 @@ function App() {
                     )}
                 </AnimatePresence>
 
-                {/* TOAST NOTIFICATION */}
                 <Toast
                     message={toastMsg || ''}
                     isVisible={!!toastMsg}
                     onClose={() => setToastMsg(null)}
                 />
 
+                <WelcomeModal />
             </main>
 
             {/* BOTTOM NAV BAR */}

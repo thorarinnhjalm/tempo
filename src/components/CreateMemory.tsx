@@ -5,6 +5,7 @@ import { Mic, Camera, X, Check, Sparkles } from 'lucide-react';
 import { clsx } from 'clsx';
 import confetti from 'canvas-confetti';
 import { useTranslation } from 'react-i18next';
+import { Tooltip } from './Tooltip';
 
 interface CreateMemoryProps {
     members: Member[];
@@ -124,11 +125,14 @@ export function CreateMemory({ members, currentUser, onClose, onSave }: CreateMe
 
                 {/* 1. CONTENT & VOICE INPUT */}
                 <div className="space-y-3">
-                    <label className="text-lg font-bold text-slate-700 ml-1">{t('create_memory.prompt_what')}</label>
+                    <div className="flex items-center gap-2">
+                        <label className="text-lg font-bold text-slate-700 ml-1">{t('create_memory.prompt_what')}</label>
+                        <Tooltip content="Þú getur líka notað hljóðnemann til að tala inn minninguna!" />
+                    </div>
                     <div className="relative">
                         <textarea
                             className="w-full bg-indigo-50 rounded-3xl p-6 text-lg min-h-[140px] focus:ring-4 focus:ring-indigo-100 outline-none resize-none placeholder-indigo-300 font-medium"
-                            placeholder={t('create_memory.placeholder_what')}
+                            placeholder="Dæmi: Fórum í ísbíltúr og sáum norðurljósin..."
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                         />
