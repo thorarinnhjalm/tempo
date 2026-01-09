@@ -12,14 +12,14 @@ export function Login() {
 
     useEffect(() => {
         if (currentUser) {
-            navigate('/');
+            navigate('/app');
         }
     }, [currentUser, navigate]);
 
     const handleLogin = async () => {
         try {
             await signInWithGoogle();
-            navigate('/');
+            navigate('/app');
         } catch (error) {
             console.error("Login failed", error);
         }

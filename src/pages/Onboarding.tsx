@@ -22,7 +22,7 @@ export function Onboarding() {
             await createFamily(familyName, currentUser);
             // After creation, redirect to dashboard. 
             // The OnboardingGuard will re-check and see the new familyId.
-            window.location.href = '/';
+            window.location.href = '/app';
         } catch (error) {
             console.error("Failed to create family", error);
             alert("Failed to create family. Please try again.");
