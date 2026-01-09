@@ -177,7 +177,7 @@ export function MarketingSite() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <span className="font-bold tracking-widest uppercase text-sm mb-2 block" style={{ color: '#b05436' }}>The Struggle</span>
+                            <span className="font-bold tracking-widest uppercase text-sm mb-2 block" style={{ color: '#b05436' }}>Áskorunin</span>
                             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6" style={{ color: '#2c332e' }}>{t('marketing.problem_title')}</h2>
                             <p className="text-xl leading-relaxed mb-8" style={{ color: '#57534e' }}>
                                 {t('marketing.problem_desc')}
@@ -185,7 +185,7 @@ export function MarketingSite() {
                             <div className="h-1 w-20 rounded-full" style={{ backgroundColor: '#e7e5e4' }} />
                         </div>
                         <div>
-                            <span className="font-bold tracking-widest uppercase text-sm mb-2 block" style={{ color: '#2d4a3e' }}>The Solution</span>
+                            <span className="font-bold tracking-widest uppercase text-sm mb-2 block" style={{ color: '#2d4a3e' }}>Lausnin</span>
                             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6" style={{ color: '#2c332e' }}>{t('marketing.solution_title')}</h2>
                             <p className="text-xl leading-relaxed mb-8" style={{ color: '#57534e' }}>
                                 {t('marketing.solution_desc')}
