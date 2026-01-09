@@ -1,160 +1,85 @@
-import { useState } from 'react';
-import { Member, Memory } from './types/firestore';
+import { useState, useEffect } from 'react';
+import { Memory } from './types/firestore';
 import { CreateMemory } from './components/CreateMemory';
 import { Vault } from './components/Vault';
 import { WeeklyMeeting } from './components/WeeklyMeeting';
 import { Toast } from './components/Toast';
 import { AmbientBackground } from './components/AmbientBackground';
 import { TiltCard } from './components/TiltCard';
-import { MarketingSite } from './pages/MarketingSite'; // Import Landing Page
 import { Button } from './components/Button';
 import { CURRICULUM, MONTH_THEMES } from './data/curriculum';
 import { LayoutGrid, Plus, History, MessageCircle } from 'lucide-react';
 import { clsx } from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
-import { app } from './lib/firebase'; // Ensure firebase is initialized
-import { useEffect } from 'react';
-
-// MOCK DATA
-const MOCK_FAMILY_MEMBERS: Member[] = [
-    { id: '1', familyId: 'f1', name: 'Mamma', role: 'parent', avatarUrl: '👩‍🦱', color: '#8B5CF6', xp: 1200, badges: [] },
-    { id: '2', familyId: 'f1', name: 'Pabbi', role: 'parent', avatarUrl: '👨‍🦰', color: '#3B82F6', xp: 1050, badges: [] },
-    { id: '3', familyId: 'f1', name: 'Jón', role: 'child', avatarUrl: '🦁', color: '#F59E0B', xp: 450, badges: [] },
-    { id: '4', familyId: 'f1', name: 'Anna', role: 'child', avatarUrl: '🦄', color: '#EC4899', xp: 600, badges: [] },
-];
-
-const MOCK_MEMORIES: Memory[] = [
-    {
-        id: 'mem1',
-        familyId: 'f1',
-        creatorId: '1',
-        content: 'We planted a tree in the backyard today! It was super muddy but fun.',
-        taggedMemberIds: ['1', '3', '2'],
-        tags: ['nature'],
-        mood: 'happy',
-        createdAt: new Date().toISOString(),
-        occurredAt: new Date().toISOString()
-    },
-    {
-        id: 'mem2',
-        familyId: 'f1',
-        creatorId: '3',
-        content: 'I drew a picture of our house.',
-        taggedMemberIds: ['3'],
-        tags: ['art'],
-        mood: 'excited',
-        createdAt: new Date(Date.now() - 86400000).toISOString(),
-        occurredAt: new Date(Date.now() - 86400000).toISOString()
-    }
-];
+import { app } from './lib/firebase';
+import { useAuth } from './context/AuthContext';
+import { checkUserFamily } from './lib/firestore-utils';
+import { useFamilyMembers, useMemories } from './hooks/useFirestoreData';
 
 function App() {
-    const [activeProfile, setActiveProfile] = useState<Member | null>(null);
-    const [view, setView] = useState<'dashboard' | 'create-memory' | 'vault'>('dashboard');
-    const [memories, setMemories] = useState<Memory[]>(MOCK_MEMORIES);
+    const { currentUser, logout } = useAuth();
+    const [familyId, setFamilyId] = useState<string | null>(null);
 
-    // STATE: Simple router for prototype
-    const [showLanding, setShowLanding] = useState(true);
+    // FETCH REAL DATA
+    const { members, loading: membersLoading } = useFamilyMembers(familyId);
+    const { memories } = useMemories(familyId);
 
+    // Initial Setup: Get Family ID
     useEffect(() => {
-        console.log("Firebase Initialized:", app.name);
-    }, []);
+        if (currentUser) {
+            checkUserFamily(currentUser.uid).then(fid => setFamilyId(fid));
+        }
+    }, [currentUser]);
+
+    // Derived State
+    const activeProfile = members.find(m => m.userId === currentUser?.uid);
+
+    const [view, setView] = useState<'dashboard' | 'create-memory' | 'vault'>('dashboard');
 
     // TOOLS STATE
     const [showMeeting, setShowMeeting] = useState(false);
     const [toastMsg, setToastMsg] = useState<string | null>(null);
 
     // MOCK: Current time simulation
-    const currentMonthId = 1; // January (Theme: Self)
-    const currentWeekId = 1; // Week 1
+    const currentMonthId = 1;
+    const currentWeekId = 1;
+
+    useEffect(() => {
+        console.log("Firebase Initialized:", app.name);
+    }, []);
 
     const currentTheme = MONTH_THEMES[currentMonthId];
     const currentQuest = CURRICULUM.find(q => q.monthId === currentMonthId && q.weekId === currentWeekId);
-
-    // MOCK: In a real app, we would fetch members from Firestore here based on the logged-in Family Account
-    const members = MOCK_FAMILY_MEMBERS;
 
     const showToast = (msg: string) => {
         setToastMsg(msg);
         setTimeout(() => setToastMsg(null), 3000);
     };
 
-    const handleSwitchProfile = (member: Member) => {
-        // In a real app, this might require a PIN for parents
-        setActiveProfile(member);
-        setView('dashboard');
-    };
-
-    const handleLogout = () => {
-        setActiveProfile(null);
-        setView('dashboard');
-        setShowLanding(true); // Go back to landing on full logout
+    const handleLogout = async () => {
+        await logout();
     };
 
     const handleSaveMemory = (memoryData: Partial<Memory>) => {
-        const newMemory: Memory = {
-            id: Math.random().toString(),
-            familyId: 'f1',
-            creatorId: activeProfile?.id || '',
-            content: memoryData.content || '',
-            taggedMemberIds: memoryData.taggedMemberIds || [],
-            tags: [],
-            mood: memoryData.mood,
-            createdAt: new Date().toISOString(),
-            occurredAt: new Date().toISOString()
-        };
-        setMemories([newMemory, ...memories]);
+        // TODO: Actually save to Firestore using a utility function
+        console.log("Saving memory (local only for now):", memoryData);
+        // Optimistic update for now or just let the hook handle it when we implement save logic
         setView('vault');
     };
 
-    // ROUTING: Show Landing Page first
-    if (showLanding) {
+    // LOADING STATE
+    if (membersLoading || !activeProfile) {
         return (
-            <div className="relative">
-                <MarketingSite />
-                {/* OVERRIDE: For prototype, add floating demo button */}
-                <div className="fixed bottom-6 right-6 z-[100]">
-                    <Button
-                        onClick={() => setShowLanding(false)}
-                        className="bg-indigo-600 text-white shadow-2xl border-2 border-white/20 animate-bounce"
-                        size="lg"
-                    >
-                        Demo: Log In / Start App
-                    </Button>
-                </div>
-            </div>
-        );
-    }
-
-    if (!activeProfile) {
-        return (
-            <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
                 <AmbientBackground themeName="indigo" />
-                <h1 className="text-3xl font-bold mb-8 text-slate-800 z-10 relative">Who is playing?</h1>
-                <div className="grid grid-cols-2 gap-6 max-w-md w-full z-10 relative">
-                    {members.map((member) => (
-                        <button
-                            key={member.id}
-                            onClick={() => handleSwitchProfile(member)}
-                            className="group flex flex-col items-center p-4 bg-white/80 backdrop-blur-sm rounded-3xl shadow-sm border-2 border-white hover:border-indigo-100 hover:shadow-lg transition-all active:scale-95"
-                        >
-                            <div
-                                className="w-24 h-24 rounded-full flex items-center justify-center text-4xl mb-4 border-4 transition-transform group-hover:scale-110 shadow-sm"
-                                style={{ borderColor: member.color, backgroundColor: `${member.color}20` }}
-                            >
-                                {member.avatarUrl}
-                            </div>
-                            <span className="text-xl font-bold text-slate-700">{member.name}</span>
-                        </button>
-                    ))}
-
-                    {/* Add Member Button Placeholder */}
-                    <button className="flex flex-col items-center p-4 border-2 border-dashed border-slate-300 rounded-3xl text-slate-400 hover:text-indigo-500 hover:border-indigo-300 transition-colors bg-white/50 backdrop-blur-sm">
-                        <div className="w-24 h-24 rounded-full flex items-center justify-center mb-4 bg-slate-100">
-                            <Plus size={32} />
-                        </div>
-                        <span className="text-lg font-bold">Add Person</span>
-                    </button>
+                <div className="text-center space-y-4 z-10 relative">
+                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-200 border-t-indigo-600 mx-auto"></div>
+                    <p className="text-indigo-900 font-bold animate-pulse">Loading Family...</p>
+                    {!membersLoading && !activeProfile && (
+                        <p className="text-sm text-red-500 bg-white/80 p-2 rounded">
+                            Critical Error: Member profile not found for this user in this family.
+                        </p>
+                    )}
                 </div>
             </div>
         );

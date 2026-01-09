@@ -13,6 +13,7 @@ export interface Family {
 export interface Member {
   id: string; // Document ID
   familyId: string;
+  userId?: string; // Link to the auth user (optional for children who don't log in)
   name: string;
   role: 'parent' | 'child'; // Parent = Admin, Child = Restricted
   avatarUrl: string; // URL or local asset identifier (e.g., 'avatar_lion')
