@@ -57,9 +57,8 @@ export function AmbientBackground({ themeName = 'indigo' }: { themeName?: string
     const particleCount = 15;
 
     return (
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-            {/* Base Gradient Layer */}
-            <div className="absolute inset-0 bg-[#fcfaf8] opacity-90" />
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+            {/* Base Gradient Layer - Removed opacity overlay to prevent "sludge" effect */}
 
             {/* Particles Layer */}
             {Array.from({ length: particleCount }).map((_, i) => (
