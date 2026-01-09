@@ -259,42 +259,40 @@ export function MarketingSite() {
             </section>
 
             {/* STATS / SOCIAL PROOF */}
-            <section className="py-20 text-white" style={{ backgroundColor: '#2d4a3e' }}>
+            <section className="py-20" style={{ backgroundColor: '#fcfaf8', color: '#2c332e' }}>
                 <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#e0a458' }}>1,000+</div>
-                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#d1fae5' }}>{t('social_proof.stat_1')}</div>
+                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#2d4a3e' }}>1,000+</div>
+                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#2c332e' }}>{t('social_proof.stat_1')}</div>
                     </div>
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#e0a458' }}>50k+</div>
-                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#d1fae5' }}>{t('social_proof.stat_2')}</div>
+                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#2d4a3e' }}>50k+</div>
+                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#2c332e' }}>{t('social_proof.stat_2')}</div>
                     </div>
                     <div>
-                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#e0a458' }}>100k+</div>
-                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#d1fae5' }}>{t('social_proof.stat_3')}</div>
+                        <div className="text-5xl font-black font-serif mb-2" style={{ color: '#2d4a3e' }}>100k+</div>
+                        <div className="font-bold uppercase tracking-widest text-sm" style={{ color: '#2c332e' }}>{t('social_proof.stat_3')}</div>
                     </div>
                 </div>
             </section>
 
             {/* PRICING */}
-            <section id="pricing" className="py-32 relative overflow-hidden text-white" style={{ backgroundColor: '#2c332e' }}>
-                <div className="absolute bottom-0 w-full h-[80%] opacity-10 -z-10" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-
+            <section id="pricing" className="py-32 relative overflow-hidden" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
                 <div className="max-w-4xl mx-auto text-center relative z-10 px-6">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white font-serif">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 font-serif" style={{ color: '#2c332e' }}>
                         <Trans i18nKey="marketing.pricing_title" components={{ 1: <br /> }} />
                     </h2>
-                    <p className="text-[#d1fae5] text-xl mb-16 max-w-lg mx-auto">{t('marketing.pricing_subtitle')}</p>
+                    <p className="text-xl mb-16 max-w-lg mx-auto" style={{ color: '#57534e' }}>{t('marketing.pricing_subtitle')}</p>
 
                     <div className="grid md:grid-cols-2 gap-8 items-center">
 
                         {/* Monthly */}
                         <TiltCard>
-                            <div className="bg-[#3d6152]/20 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 text-white hover:bg-white/10 transition-colors">
-                                <h3 className="text-xl font-bold mb-2 opacity-80">{t('marketing.monthly')}</h3>
-                                <div className="text-5xl font-serif font-bold mb-2">2.990 kr</div>
-                                <div className="text-sm opacity-60 mb-8 font-medium">{t('marketing.billed_monthly')}</div>
-                                <Button variant="outline" className="w-full border-white/30 text-white hover:bg-white/10">
+                            <div className="backdrop-blur-md p-10 rounded-[2.5rem] border border-stone-200 transition-colors" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
+                                <h3 className="text-xl font-bold mb-2 opacity-80" style={{ color: '#2c332e' }}>{t('marketing.monthly')}</h3>
+                                <div className="text-5xl font-serif font-bold mb-2" style={{ color: '#2c332e' }}>2.990 kr</div>
+                                <div className="text-sm opacity-60 mb-8 font-medium" style={{ color: '#57534e' }}>{t('marketing.billed_monthly')}</div>
+                                <Button variant="outline" className="w-full border-stone-200 hover:bg-stone-50" style={{ color: '#2c332e' }}>
                                     {t('marketing.choose_monthly')}
                                 </Button>
                             </div>
@@ -357,13 +355,13 @@ export function MarketingSite() {
             </section>
 
             {/* FOOTER */}
-            <footer className="text-white/40 py-12 border-t border-white/10" style={{ backgroundColor: '#2c332e' }}>
+            <footer className="py-12 border-t border-stone-200" style={{ backgroundColor: '#fcfaf8', color: '#2c332e' }}>
                 <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
-                    <span className="font-serif text-3xl font-bold tracking-tight text-white">FamilyLifeOS</span>
-                    <div className="text-sm font-medium">
+                    <span className="font-serif text-3xl font-bold tracking-tight" style={{ color: '#2c332e' }}>FamilyLifeOS</span>
+                    <div className="text-sm font-medium" style={{ color: '#57534e' }}>
                         {t('marketing.footer_rights')}
                     </div>
-                    <div className="flex gap-4 text-xs font-bold uppercase tracking-widest text-white/20 hover:text-white/40 cursor-pointer transition-colors">
+                    <div className="flex gap-4 text-xs font-bold uppercase tracking-widest cursor-pointer transition-colors" style={{ color: '#57534e' }}>
                         <span>Privacy Policy</span>
                         <span>Terms of Service</span>
                         <span>Contact</span>
