@@ -288,7 +288,7 @@ export function MarketingSite() {
 
                         {/* Monthly */}
                         <TiltCard>
-                            <div className="backdrop-blur-md p-10 rounded-[2.5rem] border border-stone-200 transition-colors" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
+                            <div className="p-10 rounded-[2.5rem] border border-stone-200 shadow-xl transition-colors" style={{ backgroundColor: '#ffffff', color: '#2c332e' }}>
                                 <h3 className="text-xl font-bold mb-2 opacity-80" style={{ color: '#2c332e' }}>{t('marketing.monthly')}</h3>
                                 <div className="text-5xl font-serif font-bold mb-2" style={{ color: '#2c332e' }}>2.990 kr</div>
                                 <div className="text-sm opacity-60 mb-8 font-medium" style={{ color: '#57534e' }}>{t('marketing.billed_monthly')}</div>
