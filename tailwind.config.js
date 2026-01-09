@@ -17,8 +17,14 @@ export default {
                     DEFAULT: '#2d4a3e',
                     light: '#3d6152',
                 },
-                clay: '#d97757',
-                mustard: '#e0a458',
+                clay: {
+                    DEFAULT: '#d97757',
+                    dark: '#b05436', // Darker for text
+                },
+                mustard: {
+                    DEFAULT: '#e0a458',
+                    dark: '#b37628', // Darker for text
+                },
             },
             borderRadius: {
                 '4xl': '2rem',

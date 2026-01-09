@@ -73,7 +73,7 @@ export function MarketingSite() {
                     <div className="relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mustard/10 text-mustard font-bold text-sm tracking-wide uppercase border border-mustard/20 mb-8"
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-mustard/10 text-mustard-dark font-bold text-sm tracking-wide uppercase border border-mustard/20 mb-8"
                         >
                             <Star size={14} fill="currentColor" /> {t('marketing.leikur_ad_laera')}
                         </motion.div>
@@ -85,7 +85,7 @@ export function MarketingSite() {
                             <Trans
                                 i18nKey="marketing.hero_title"
                                 components={{
-                                    1: <span className="text-clay italic relative" />,
+                                    1: <span className="text-clay-dark italic relative" />,
                                     2: <motion.span
                                         className="absolute bottom-1 left-0 w-full h-3 bg-clay/20 -z-10 rounded-full"
                                         initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ delay: 0.8, duration: 0.8 }}
@@ -177,7 +177,7 @@ export function MarketingSite() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <span className="text-clay font-bold tracking-widest uppercase text-sm mb-2 block">The Struggle</span>
+                            <span className="text-clay-dark font-bold tracking-widest uppercase text-sm mb-2 block">The Struggle</span>
                             <h2 className="text-4xl md:text-5xl font-serif font-bold text-ink mb-6">{t('marketing.problem_title')}</h2>
                             <p className="text-xl text-stone-600 leading-relaxed mb-8">
                                 {t('marketing.problem_desc')}
@@ -236,7 +236,7 @@ export function MarketingSite() {
                     <div className="group relative pt-12 md:pt-0">
                         <div className="absolute inset-0 bg-mustard rounded-[3rem] -rotate-1 group-hover:-rotate-2 transition-transform duration-500 md:top-0 top-12"></div>
                         <div className="relative bg-white p-10 rounded-[3rem] border border-stone-200 shadow-xl h-full flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2">
-                            <div className="w-16 h-16 bg-mustard/10 rounded-2xl flex items-center justify-center text-mustard mb-8">
+                            <div className="w-16 h-16 bg-mustard/10 rounded-2xl flex items-center justify-center text-mustard-dark mb-8">
                                 <Sparkles size={32} />
                             </div>
 
@@ -247,7 +247,7 @@ export function MarketingSite() {
 
                             <ul className="space-y-4 mt-auto">
                                 {[t('marketing.feat_diary'), t('marketing.feat_audio'), t('marketing.feat_emotions')].map(item => (
-                                    <li key={item} className="flex items-center gap-3 font-bold text-mustard text-lg">
+                                    <li key={item} className="flex items-center gap-3 font-bold text-mustard-dark text-lg">
                                         <div className="w-8 h-8 rounded-full bg-mustard/10 flex items-center justify-center text-sm">✓</div>
                                         {item}
                                     </li>
@@ -303,7 +303,7 @@ export function MarketingSite() {
                         {/* Annual */}
                         <TiltCard>
                             <div className="bg-mustard p-10 rounded-[2.5rem] border-4 border-white/20 shadow-2xl relative text-ink">
-                                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-mustard px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
+                                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-white text-mustard-dark px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">
                                     {t('marketing.best_value')}
                                 </div>
                                 <h3 className="text-xl font-bold mb-2 opacity-80">{t('marketing.annual')}</h3>
