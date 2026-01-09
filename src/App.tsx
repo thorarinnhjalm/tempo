@@ -15,7 +15,7 @@ import { app } from './lib/firebase';
 import { useAuth } from './context/AuthContext';
 import { checkUserFamily } from './lib/firestore-utils';
 import { useFamilyMembers, useMemories } from './hooks/useFirestoreData';
-import LanguageSwitcher from './components/LanguageSwitcher';
+import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 
 function App() {
